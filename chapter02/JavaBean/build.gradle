@@ -1,0 +1,18 @@
+task javaBean{
+	Persion p = new Persion();
+	doLast{
+		println "name:${p.name}" //默认null，不用些getter/setter
+		p.name = "Cap"
+		println "name:${p.name}" 
+		println "age:${p.age}"  //因为只有getter方法，所以只能读取，不能设置
+	}
+	
+}
+
+class Persion{
+	private String name; 
+
+	public int getAge(){
+		12
+	}
+}

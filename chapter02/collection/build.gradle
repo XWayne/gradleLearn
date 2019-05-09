@@ -1,0 +1,28 @@
+task printlnList{
+	def numList = [1,2,3,4,5]
+
+	doLast{
+		println numList[1] //访问第二个元素
+
+		numList.each{ //for each循环 ，it即为遍历元素
+			println "each:${it}"
+		}
+	}
+	
+}
+
+task printlnMap{
+	def map1 = ['width':1024,"height":222]
+
+	doLast{
+		println map1.width  //访问元素“width”
+		println map1['height'] //访问元素“height”
+
+		map1.each{  //for each循环 ，it即为Map.Entry实例
+			println "Key:${it.key};value:${it.value}"
+		}
+	}
+
+	
+}
+

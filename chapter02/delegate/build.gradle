@@ -1,0 +1,35 @@
+
+task delegate{
+	doLast{
+		person{
+			name = "cap"
+			age = 20
+			dumpPersion()
+		}
+	}
+
+
+}
+def dumpPersion(){
+	println "project delegate"
+}
+
+
+class Person{
+	private String name
+	private int age 
+
+	def dumpPersion(){
+		println "name:${name};age:${age}"
+	}
+}
+
+def person(Closure<Person> closure){
+	Person p = new Person()
+	closure.delegate = p //设置委托
+	closure.setResolveStrategy(Closure.DELEGATE_FIRST)//设置委托优先
+	closure(p)
+}
+
+
+// DSL：领域特定语言

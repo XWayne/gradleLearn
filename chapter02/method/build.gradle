@@ -1,0 +1,50 @@
+task invokeMethod{
+
+	def nums = [7,8,9] 
+	//代码可以作为参数，以下是优化写法:
+	nums.each({println it}) //呆板写法
+
+	nums.each({ //格式化
+		println it
+	})
+
+	nums.each(){ //如果最后一个参数是闭包，可以放到方法外面
+		println it
+	}
+
+	nums.each { //然后方法可以省略（）
+		println it
+	}
+
+
+	doLast{
+		method1 1,2 //可以省略（）
+		println "${method2 1,2}"
+	}
+
+}
+
+def method1(a,b){ //定义方法
+	println "${a};${b}"
+}
+
+def method2(a,b){
+	a+b //可以不写return 最后一句代码作为其返回值
+}
+
+
+//闭包
+task customMethod{
+
+	doLast{
+		custom {k,v->
+			println "k:${k};v:${v}"
+		}
+	}
+}
+
+def custom(closure){
+	for(i in 1..10) { //模拟1-10
+		closure i,i
+	}
+}
