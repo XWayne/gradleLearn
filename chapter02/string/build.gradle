@@ -1,0 +1,13 @@
+task printlnStringClass<<{
+	def str1 = "双引号句子"
+	def str2 = '单引号句子'
+	println '双引号句子class:'+str1.getClass().name
+	println '单引号句子class:'+str2.getClass().getSimpleName()
+}
+
+task printlnStringVar<<{
+	def name = 'Cap'
+	
+	println 'name:${name}'
+	println "name:${name}"
+}

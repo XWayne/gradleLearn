@@ -1,0 +1,11 @@
+// 查看所有可执行任务:
+./gradlew.bat tasks 
+
+// gradle内置的 Help 任务:
+./gradlew.bat help --task <需要查看帮助的 taskName>
+如： ./gradlew.bat help --task tasks // 查看所有可执行任务： ‘tasks’ 的帮助
+
+多任务顺序执行： ./gradlew.bat task1 task2 task3 ...
+通过任务名字缩写执行（驼峰式命名的缩写调用）： ./gradlew.bat connectChechk <==> ./gradlew.bat cc
+
+强制刷新依赖： ./gradlew.bat --refresh-dependencies assemble

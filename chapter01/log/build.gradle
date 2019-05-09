@@ -1,0 +1,6 @@
+task printLog{
+	println 'this is print q 我'
+
+	logger.quiet 'quite log' //方法，<==>  logger.quiet(quiet log)
+	logger.error('error log') //方法，
+}
