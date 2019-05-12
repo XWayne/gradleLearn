@@ -1,0 +1,72 @@
+//-------------创建任务------------------------------
+task customTask1{//创建任务的一种方式，常用
+	doFirst{
+		println 'customTask1 doFirst'
+	}
+	doLast{
+		println 'customTask1 doLast'
+	}
+}
+
+tasks.create("customTask2"){ 
+//TaskContainer（tasks）创建任务方式
+	doFirst{
+		println 'customTask2 doFirst'
+	}
+	doLast{
+		println 'customTask2 doLast'
+	}
+}
+//-----------------------------------------------------
+
+
+
+//--任务依赖---------------------------------------
+task exHello{
+	doLast{
+		println 'Hello'
+	}
+}
+
+task exWorld{
+	doLast{
+		println 'World'
+	}
+}
+
+task exOneDepend(dependsOn: exHello){
+	//依赖一个
+	doLast{
+		println 'main'
+	}
+}
+
+task exMultiDepend(){
+	//依赖多个
+	dependsOn exHello,exWorld
+	doLast{
+		println 'main'
+	}
+}
+//------------------------------------------------
+
+//------任务间通过api控制、交互-------------------------
+
+//将定义的任务看成一个变量，类型是Task
+task ex36Hello {
+	doLast{
+		println 'dowLast1'
+	}
+    
+}
+
+ex36Hello.doFirst {
+    println 'dowFirst'
+}
+
+ex36Hello.doLast {
+    println project.hasProperty('ex36Hello')
+    println 'dowLast2'
+}
+
+//---------------------------------------------------

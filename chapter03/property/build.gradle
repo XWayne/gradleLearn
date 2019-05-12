@@ -1,0 +1,42 @@
+//自定义属性，可以跨project和跨task，只要能访问到这些属性所属的对象
+//可以用在project和task上，也可以用在SourceSets中
+
+//自定义一个属性
+apply plugin: "java"
+ext.age = 18
+
+//自定义多个属性
+ext{
+	phone = '020'
+	address = ''
+
+	dep = [android : "androidan"] //map
+}
+
+
+sourceSets.all{
+	ext.resourcesDir = null
+}
+
+sourceSets {
+	main{
+		resourcesDir="main/res"
+	}
+	test{
+		resourcesDir="test/res"
+	}
+}
+
+task customProperty{
+	doLast{
+		println "age: ${age}"
+		println "phone: $phone"
+		println "address: $address"
+		println "android: ${dep.android}"
+
+		sourceSets.each{
+			println"${it.name}'s resourcesDir is: ${it.resourcesDir}"
+		}
+	}
+	
+}
