@@ -1,0 +1,34 @@
+final String BUILD_APPS_ALL="all";
+final String BUILD_APPS_SHOUFA="shoufa";
+final String BUILD_APPS_EXCLUDE_SHOUFA="exclude_shoufa";
+
+task QQRelease{
+	doLast{
+		println "QQRelease"
+	}
+    
+}
+task BaiduRelease{
+	doLast{
+		println "BaiduRelease"
+	}
+   
+}
+
+task build{
+	group BasePlugin.BUILD_GROUP
+	description '打渠道包'
+	dependsOn QQRelease,BaiduRelease
+}
+
+QQRelease.onlyIf{
+	if (project.hasProperty('build_apps')) {
+		Object buildApps = project.property("build_apps")
+		if (BUILD_APPS_SHOUFA.equals(buildApps)) {
+			return false
+		}
+	}
+	return true;
+}
+
+//gradle -Pbuild_apps=shoufa build; //以键值对的形式添加属性：-PK=V，中间不能有空格

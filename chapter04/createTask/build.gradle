@@ -1,0 +1,42 @@
+//--原型是Project的一个方法：
+//-----   Task task (String name) throws InvalidUesrDataException 
+//任务名字方式
+Task task1 = task(task1) //生成task对象并赋值
+task1.doLast{
+	println "create task1"
+}
+//-----------------------------------------
+
+
+//-----   Task task (String name,Map) throws InvalidUesrDataException 
+//任务名字+map配置
+Task task2 = task(task2,group:BasePlugin.BUILD_GROUP) //生成task对象并赋值
+task2.doLast{
+	println "create task2"
+	println "task2.group:$task2.group"
+}
+//-----------------------------------------
+
+//---任务名字+闭包配置-------------------
+task task3{
+	group BasePlugin.BUILD_GROUP
+
+	doLast{
+	println "create task3"
+	println "task3.group:$task3.group"
+}
+}
+
+//-----------------------------------------
+
+//---TaskContainer方式，所有上面方法最终都是调用这个方法-------------------
+tasks.create('task4'){
+	group BasePlugin.BUILD_GROUP
+
+	doLast{
+	println "create task4"
+	println "task4.group:$task4.group"
+}
+}
+
+//-----------------------------------------

@@ -1,0 +1,19 @@
+//1、当作Project的一个属性字段
+task task1{}
+task1.doLast{}//直接访问
+
+//2、利用tasks(类似于集合)
+tasks['task1']
+
+//3、通过路径，get和find，get如果找不到则抛出异常，find找不到任务则返回null
+tasks['task1'].doLast{
+	println tasks.findByPath(':task1')
+	println tasks.getByPath(':task1')
+	// println tasks.getByPath(':accessTask:task1')
+}
+
+//4、通过名字，get和find，get如果找不到则抛出异常，find找不到任务则返回null
+tasks['task1'].doLast{
+	println tasks.findByPath('task1')
+	println tasks.getByPath('task1')
+}

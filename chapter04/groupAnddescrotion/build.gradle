@@ -1,0 +1,3 @@
+def Task mytask = task("taskBuild")
+mytask.description = 'This is a test Task'
+mytask.group = BasePlugin.BUILD_GROUP

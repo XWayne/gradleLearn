@@ -1,0 +1,20 @@
+task order1{
+	doLast{
+		println 'doLast1'
+	}
+}
+
+task order2{
+	doLast{
+		println 'doLast2'
+	}
+}
+
+order1.shouldRunAfter(order2)
+
+task enableTask{
+	doLast{
+		println 'enabled'
+	}
+	enabled = false //是否跳过
+}
